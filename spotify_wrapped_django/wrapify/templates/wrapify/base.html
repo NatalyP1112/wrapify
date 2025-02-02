@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Wrapify</title>
+    <link rel="stylesheet" href="{% static 'wrapify/css/spotify_style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="{% static 'wrapify/img/wrapify_logo.png' %}" 
+                 alt="Wrapify Logo" 
+                 class="logo-image">
+            <h1>Wrapify</h1>
+        </div>
+
+        {% if authenticated %}
+        <div class="header-right">
+            <span class="greeting">Hi, {{ user_name }}!</span>
+            <a href="{% url 'logout' %}" class="logout-button">Log Out</a>
+        </div>
+    {% endif %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <p>Powered by Spotify Web API & Django</p>
+    </footer>
+</body>
+</html>

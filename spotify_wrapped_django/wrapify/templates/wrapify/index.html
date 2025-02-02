@@ -1,0 +1,53 @@
+{% extends 'wrapify/base.html' %}
+{% load static %}
+
+{% block content %}
+{% if not authenticated %}
+<div class="center-content">
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}" class="spotify-button">Log in with Spotify</a>
+</div>
+{% else %}
+<!-- TOP TRACKS -->
+<div class="tracks-section">
+    <h2>Top Tracks</h2>
+    <div class="card-grid">
+      {% for track in tracks %}
+      <div class="card">
+        {% if track.album_image_url %}
+          <img src="{{ track.album_image_url }}" alt="Album Cover" class="card-image">
+        {% endif %}
+        <div class="card-info">
+          <span class="track-name">{{ track.track_name }}</span>
+          <span class="artist-name">{{ track.artist_name }}</span>
+          <a href="{{ track.track_url }}" target="_blank" class="listen-button">
+            Listen on Spotify
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+
+<!-- TOP ARTISTS -->
+<div class="artists-section">
+    <h2>Top Artists</h2>
+    <div class="card-grid">
+      {% for artist in artists %}
+      <div class="card">
+        {% if artist.artist_image_url %}
+          <img src="{{ artist.artist_image_url }}" alt="Artist Image" class="card-image">
+        {% endif %}
+        <div class="card-info">
+          <span class="artist-name">{{ artist.artist_name }}</span>
+          <span class="followers">{{ artist.followers }} followers</span>
+          <a href="{{ artist.artist_url }}" target="_blank" class="listen-button">
+            Visit on Spotify
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

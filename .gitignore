@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+
+db.sqlite3
+
+venv/
+
+.spotipyoauthcache
+
+config_secret.py
